@@ -6,18 +6,18 @@ window.onload = function () {
     seconds: document.getElementById("seconds"),
   };
 
-  const inputDate = {
-    year: document.getElementById("input_year"),
-    month: document.getElementById("input_month"),
-    days: document.getElementById("input_days"),
-    hours: document.getElementById("input_hours"),
-    minutes: document.getElementById("input_minutes"),
-    seconds: document.getElementById("input_seconds"),
+  const data = {
+    summer: "summer",
+    winter: "winter",
+    spring: "spring",
+    autumn: "autumn",
   };
 
-  let timeStart = new Date();
+  let timeEnd;
+  const text = document.getElementById("text");
+  const TIME_UPDATE = 3;
 
-  function diffTime(timeEnd, timeStart) {
+  function diffTime(timeEnd = new Date(), timeStart) {
     return timeEnd.getTime() - timeStart.getTime();
   }
 
@@ -28,21 +28,73 @@ window.onload = function () {
     date.seconds.innerHTML = Math.floor(millsec / 1000) % 60;
   }
 
-  function getTimeEnd() {
-    let dates = {};
-    for (const key in inputDate) {
-      dates[key] = inputDate[key].value;
+  let count = 0;
+  text.innerText = data.summer;
+
+
+  function getTimeStartSeasons() {
+    const today = new Date();
+
+    const seasonsTimeStart = {
+      summer: null,
+      winter: null,
+      spring: null,
+      autumn: null,
+    };
+    if (today.getMonth() >= 2) {
+      seasonsTimeStart.spring = new Date(today.getFullYear() + 1, 2);
+    } else {
+      seasonsTimeStart.spring = new Date(today.getFullYear(), 2);
     }
-    return Object.values(dates);
+    if (today.getMonth() >= 5) {
+      seasonsTimeStart.summer = new Date(today.getFullYear() + 1, 5);
+    } else {
+      seasonsTimeStart.summer = new Date(today.getFullYear(), 5);
+    }
+    if (today.getMonth() >= 8) {
+      seasonsTimeStart.autumn = new Date(today.getFullYear() + 1, 8);
+    } else {
+      seasonsTimeStart.autumn = new Date(today.getFullYear(), 8);
+    }
+    if (today.getMonth() >= 11) {
+      seasonsTimeStart.winter = new Date(today.getFullYear() + 1, 11);
+    } else {
+      seasonsTimeStart.winter = new Date(today.getFullYear(), 11);
+    }
+    return seasonsTimeStart;
   }
 
   setInterval(() => {
-    timeStart = new Date();
-    timeEnd = new Date(...getTimeEnd());
-    if (timeStart.getTime() < timeEnd.getTime()) {
-      setData(diffTime(timeEnd, timeStart));
-    } else {
-      setData(diffTime(timeStart, timeStart));
+    count += 1;
+    let today = new Date();
+    if (count > TIME_UPDATE) {
+      const seasonsTimeStart = getTimeStartSeasons();
+      count = 0;
+      switch (text.innerText) {
+        case data.spring:
+          text.innerText = data.summer;
+          timeEnd = seasonsTimeStart.summer;
+          break;
+
+        case data.summer:
+          text.innerText = data.autumn;
+          timeEnd = seasonsTimeStart.autumn;
+          break;
+
+        case data.autumn:
+          text.innerText = data.winter;
+          timeEnd = seasonsTimeStart.winter;
+          break;
+
+        case data.winter:
+          text.innerText = data.spring;
+          timeEnd = seasonsTimeStart.spring;
+          break;
+
+        default:
+          break;
+      }
     }
+    setData(diffTime(timeEnd, today));
   }, 1000);
 };

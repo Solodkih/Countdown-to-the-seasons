@@ -3,28 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Timer-stopwatch</title>
+    <title>Timer</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./reset.css" />
   </head>
   <body>
     <script src="script.js" type="text/javascript"></script>
+    <div class="header"></div>
     <div class="timer">
-      <header class="timer-header">COMING SOON</header>
-      <div class="timer-inputs">
-      <input type='text' maxlength="4" id="input_year" class="timer-input" ></input>
-      <input type='text' maxlength="2" id="input_month" class="timer-input" ></input>
-      <input type='text' maxlength="2" id="input_days" class="timer-input" ></input>
-      <input type='text' maxlength="2" id="input_hours" class="timer-input" ></input>
-      <input type='text' maxlength="2" id="input_minutes" class="timer-input" ></input>
-      <input type='text' maxlength="2" id="input_seconds" class="timer-input" ></input>
+      <div class="date">
+        <div class="number-container">
+          <div id="days" class="number"></div>
+        </div>
+        <div class="separator">-</div>
+        <div class="number-container">
+          <div id="hours" class="number"></div>
+        </div>
+        <div class="separator">-</div>
+        <div class="number-container">
+          <div id="minutes" class="number"></div>
+        </div>
+        <div class="separator">-</div>
+        <div class="number-container">
+          <div id="seconds" class="number"></div>
+        </div>
       </div>
-      <div class = 'timer-date'>
-      <div id="days" class="timer-number">0</div>
-      <div id="hours" class="timer-number">0</div>
-      <div id="minutes" class="timer-number">0</div>
-      <div id="seconds" class="timer-number">0</div>
-      </div>
+      <div id="text"></div>
+      <div class="window"></div>
     </div>
+    <div class="footer"></div>
   </body>
 </html>
