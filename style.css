@@ -1,52 +1,38 @@
 html,
 body {
-  height: 100%;
-  /*background-image: url("../../Pictures/timer/look.com.ua-83727.jpg");*/
-}
-.img {
-  width: 100%;
-  height: 100%;
-  /*background-image: url("../../Pictures/timer/look.com.ua-83727.jpg");*/
-}
-
-.header {
-  height: 25%;
-  position: relative;
-  z-index: 5;
-  /* animation-name: scaleHeader;
-  animation-duration: 5s;
-  animation-direction: alternate;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 2;
-  border: 4px solid black;*/
-}
-
-.footer {
-  height: 25%;
-  position: relative;
-  z-index: 5;
-  /* animation-name: scaleFooter;
-  animation-duration: 5s;
-  animation-direction: alternate;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 2; */
+  background-color: gray;
+  min-height: 100%;
 }
 
 .timer {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  margin-top: 20%;
+  text-align: center;
   position: relative;
-  z-index: 1;
+}
+
+#borderAnimation {
+  top: 50%;
+  position: absolute;
+  width: 10px;
+  border-top: 2px solid red;
+  animation-delay: 1s;
+  animation-name: animation2;
+  animation-duration: 4s;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 2;
+}
+
+.text {
+  text-align: center;
+  font-size: 15px;
 }
 
 .date {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  animation-delay: 4s;
-  animation-name: scaleFontSize;
-  animation-duration: 0.3s;
+  display: inline-flex;
+  animation-delay: 1s;
+  animation-name: animation;
+  animation-duration: 4s;
   animation-direction: alternate;
   animation-fill-mode: forwards;
   animation-iteration-count: 2;
@@ -54,45 +40,41 @@ body {
 }
 
 .number {
-  margin: 30px;
-  font-size: 5rem;
+  margin: 0px 30px 0px 30px;
+  font-size: 100px;
   text-align: center;
 }
 
 .separator {
-  margin-top: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
-  font-size: 5em;
+  margin: 0px 30px 0px 30px;
+  font-size: 100px;
 }
 
-@keyframes scaleHeader {
+@keyframes animation {
   0% {
-    transform: translateY(0%) scaleY(100%);
+    transform: scale(100%, 100%);
+  }
+  50% {
+    transform: scale(100%, 1%);
   }
   100% {
-    transform: translateY(50%) scaleY(200%);
+    transform: scale(1%, 1%);
   }
 }
-
-@keyframes scaleFooter {
+@keyframes animation2 {
   0% {
-    transform: translateY(0%) scaleY(100%);
+    transform: scale(100%, 100%);
+  }
+  50% {
+    transform: scale(300%, 100%);
   }
   100% {
-    transform: translateY(-50%) scaleY(200%);
+    transform: scale(1000%, 100%);
   }
 }
 
-@keyframes scaleFontSize {
-  0% {
-    transform: scaleY(100%);
-  }
-  100% {
-    transform: scaleY(0%);
-  }
-}
-
-.window {
-  background-color: black;
+#nameSeason,
+#textSeason {
+  color: blanchedalmond;
+  font-size: 30px;
 }

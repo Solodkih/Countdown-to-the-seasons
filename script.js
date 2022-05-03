@@ -1,4 +1,17 @@
+var data;
+
 window.onload = function () {
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "long",
+    timezone: "UTC",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  };
+
   const date = {
     days: document.getElementById("days"),
     hours: document.getElementById("hours"),
@@ -6,16 +19,12 @@ window.onload = function () {
     seconds: document.getElementById("seconds"),
   };
 
-  const data = {
-    summer: "summer",
-    winter: "winter",
-    spring: "spring",
-    autumn: "autumn",
-  };
-
-  let timeEnd;
-  const text = document.getElementById("text");
+  let seasonAndTimeEnd;
+  let today;
+  const nameSeason = document.getElementById("nameSeason");
+  const textSeason = document.getElementById("textSeason");
   const TIME_UPDATE = 3;
+  let count = 0;
 
   function diffTime(timeEnd = new Date(), timeStart) {
     return timeEnd.getTime() - timeStart.getTime();
@@ -27,10 +36,6 @@ window.onload = function () {
     date.minutes.innerHTML = Math.floor(millsec / 1000 / 60) % 60;
     date.seconds.innerHTML = Math.floor(millsec / 1000) % 60;
   }
-
-  let count = 0;
-  text.innerText = data.summer;
-
 
   function getTimeStartSeasons() {
     const today = new Date();
@@ -64,37 +69,55 @@ window.onload = function () {
     return seasonsTimeStart;
   }
 
-  setInterval(() => {
-    count += 1;
-    let today = new Date();
-    if (count > TIME_UPDATE) {
-      const seasonsTimeStart = getTimeStartSeasons();
-      count = 0;
-      switch (text.innerText) {
-        case data.spring:
-          text.innerText = data.summer;
-          timeEnd = seasonsTimeStart.summer;
-          break;
+  function getSeasonAndTimeEnd() {
+    let season;
+    let timeEnd;
+    today = new Date();
+    const seasonsTimeStart = getTimeStartSeasons();
+    switch (nameSeason.innerText) {
+      case data.spring:
+        season = data.summer;
+        timeEnd = seasonsTimeStart.summer;
+        break;
 
-        case data.summer:
-          text.innerText = data.autumn;
-          timeEnd = seasonsTimeStart.autumn;
-          break;
+      case data.summer:
+        season = data.autumn;
+        timeEnd = seasonsTimeStart.autumn;
+        break;
 
-        case data.autumn:
-          text.innerText = data.winter;
-          timeEnd = seasonsTimeStart.winter;
-          break;
+      case data.autumn:
+        season = data.winter;
+        timeEnd = seasonsTimeStart.winter;
+        break;
 
-        case data.winter:
-          text.innerText = data.spring;
-          timeEnd = seasonsTimeStart.spring;
-          break;
+      case data.winter:
+        season = data.spring;
+        timeEnd = seasonsTimeStart.spring;
+        break;
 
-        default:
-          break;
-      }
+      default:
+        season = data.summer;
+        timeEnd = seasonsTimeStart.summer;
+        break;
     }
-    setData(diffTime(timeEnd, today));
+    return { season: season, timeEnd: timeEnd };
+  }
+
+  today = new Date();
+  seasonAndTimeEnd = getSeasonAndTimeEnd();
+  nameSeason.innerText = seasonAndTimeEnd.season;
+  setData(diffTime(seasonAndTimeEnd.timeEnd, today));
+  textSeason.innerText = `Today - ${today.toLocaleString("en-US", options)}`;
+
+  setInterval(() => {
+    today = new Date();
+    textSeason.innerText = `Today - ${today.toLocaleString("en-US", options)}`;
+    count += 1;
+    if (count > TIME_UPDATE) {
+      seasonAndTimeEnd = getSeasonAndTimeEnd();
+      nameSeason.innerText = seasonAndTimeEnd.season;
+      count = 0;
+    }
+    setData(diffTime(seasonAndTimeEnd.timeEnd, today));
   }, 1000);
 };
