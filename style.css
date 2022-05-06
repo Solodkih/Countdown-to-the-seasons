@@ -28,11 +28,15 @@ body {
   font-size: 15px;
 }
 
+.containerDate {
+  display: inline-flex;
+}
+
 .date {
   display: inline-flex;
   animation-delay: 1s;
   animation-name: animation;
-  animation-duration: 4s;
+  animation-duration: 1s;
   animation-direction: alternate;
   animation-fill-mode: forwards;
   animation-iteration-count: 2;
@@ -66,10 +70,10 @@ body {
     transform: scale(100%, 100%);
   }
   50% {
-    transform: scale(300%, 100%);
+    transform: translate(10px) scale(300%, 100%) ;  
   }
   100% {
-    transform: scale(1000%, 100%);
+    transform: translate(10px) scale(300%, 100%) ;  
   }
 }
 
