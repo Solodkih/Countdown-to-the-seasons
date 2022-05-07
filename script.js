@@ -12,18 +12,24 @@ window.onload = function () {
     second: "numeric",
   };
 
+  const animationDate = "animationDate 3s 2 alternate forwards";
+
+  const animationLine = "animationLine 3s 2 alternate forwards";
+
   const date = {
     days: document.getElementById("days"),
     hours: document.getElementById("hours"),
     minutes: document.getElementById("minutes"),
     seconds: document.getElementById("seconds"),
+    date: document.getElementById("date"),
+    line: document.getElementById("line"),
   };
 
   let seasonAndTimeEnd;
   let today;
   const nameSeason = document.getElementById("nameSeason");
   const textSeason = document.getElementById("textSeason");
-  const TIME_UPDATE = 3;
+  const TIME_UPDATE = 8;
   let count = 0;
 
   function diffTime(timeEnd = new Date(), timeStart) {
@@ -117,6 +123,8 @@ window.onload = function () {
       seasonAndTimeEnd = getSeasonAndTimeEnd();
       nameSeason.innerText = seasonAndTimeEnd.season;
       count = 0;
+      date.date.style.animation = animationDate;
+      date.line.style.animation = animationLine;
     }
     setData(diffTime(seasonAndTimeEnd.timeEnd, today));
   }, 1000);
