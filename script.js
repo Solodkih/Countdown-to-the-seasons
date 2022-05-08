@@ -11,11 +11,18 @@ window.onload = function () {
     minute: "numeric",
     second: "numeric",
   };
-  const TIME_UPDATE = 10;
+  const TIME_UPDATE = 5;
   const TIME_ANIMATION = 1.5;
 
   const animationDate = `animationDate ${TIME_ANIMATION}s 2 alternate forwards`;
   const animationLine = `animationLine ${TIME_ANIMATION}s 2 alternate forwards`;
+
+  const backgroundImage = {
+    summer: `url("./img/summer.jpg")`,
+    winter: `url("./img/winter.jpg")`,
+    spring: `url("./img/spring.jpg")`,
+    autumn: `url("./img/autumn.jpg")`,
+  };
 
   const date = {
     days: document.getElementById("days"),
@@ -78,35 +85,45 @@ window.onload = function () {
   function getSeasonAndTimeEnd() {
     let season;
     let timeEnd;
+    let backgroundImageSeasons;
     today = new Date();
     const seasonsTimeStart = getTimeStartSeasons();
     switch (nameSeason.innerText) {
       case data.spring:
         season = data.summer;
         timeEnd = seasonsTimeStart.summer;
+        backgroundImageSeasons = backgroundImage.summer;
         break;
 
       case data.summer:
         season = data.autumn;
         timeEnd = seasonsTimeStart.autumn;
+        backgroundImageSeasons = backgroundImage.autumn;
         break;
 
       case data.autumn:
         season = data.winter;
         timeEnd = seasonsTimeStart.winter;
+        backgroundImageSeasons = backgroundImage.winter;
         break;
 
       case data.winter:
         season = data.spring;
         timeEnd = seasonsTimeStart.spring;
+        backgroundImageSeasons = backgroundImage.spring;
         break;
 
       default:
-        season = data.summer;
-        timeEnd = seasonsTimeStart.summer;
+        season = data.spring;
+        timeEnd = seasonsTimeStart.spring;
+        backgroundImageSeasons = backgroundImage.spring;
         break;
     }
-    return { season: season, timeEnd: timeEnd };
+    return {
+      season: season,
+      timeEnd: timeEnd,
+      backgroundImageSeasons: backgroundImageSeasons,
+    };
   }
 
   today = new Date();
@@ -114,6 +131,8 @@ window.onload = function () {
   nameSeason.innerText = seasonAndTimeEnd.season;
   setData(diffTime(seasonAndTimeEnd.timeEnd, today));
   textSeason.innerText = `Today - ${today.toLocaleString("en-US", options)}`;
+  document.body.style.backgroundImage = seasonAndTimeEnd.backgroundImageSeasons;
+
 
   setInterval(() => {
     today = new Date();
@@ -128,6 +147,7 @@ window.onload = function () {
     if (count === TIME_UPDATE) {
       seasonAndTimeEnd = getSeasonAndTimeEnd();
       nameSeason.innerText = seasonAndTimeEnd.season;
+      document.body.style.backgroundImage = seasonAndTimeEnd.backgroundImageSeasons;
     }
 
     if (count > TIME_UPDATE + TIME_ANIMATION) {
