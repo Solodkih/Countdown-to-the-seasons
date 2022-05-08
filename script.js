@@ -11,10 +11,11 @@ window.onload = function () {
     minute: "numeric",
     second: "numeric",
   };
+  const TIME_UPDATE = 10;
+  const TIME_ANIMATION = 1.5;
 
-  const animationDate = "animationDate 3s 2 alternate forwards";
-
-  const animationLine = "animationLine 3s 2 alternate forwards";
+  const animationDate = `animationDate ${TIME_ANIMATION}s 2 alternate forwards`;
+  const animationLine = `animationLine ${TIME_ANIMATION}s 2 alternate forwards`;
 
   const date = {
     days: document.getElementById("days"),
@@ -24,12 +25,11 @@ window.onload = function () {
     date: document.getElementById("date"),
     line: document.getElementById("line"),
   };
+  const nameSeason = document.getElementById("nameSeason");
+  const textSeason = document.getElementById("textSeason");
 
   let seasonAndTimeEnd;
   let today;
-  const nameSeason = document.getElementById("nameSeason");
-  const textSeason = document.getElementById("textSeason");
-  const TIME_UPDATE = 8;
   let count = 0;
 
   function diffTime(timeEnd = new Date(), timeStart) {
@@ -119,13 +119,23 @@ window.onload = function () {
     today = new Date();
     textSeason.innerText = `Today - ${today.toLocaleString("en-US", options)}`;
     count += 1;
-    if (count > TIME_UPDATE) {
-      seasonAndTimeEnd = getSeasonAndTimeEnd();
-      nameSeason.innerText = seasonAndTimeEnd.season;
-      count = 0;
+
+    if (count > TIME_UPDATE - TIME_ANIMATION) {
       date.date.style.animation = animationDate;
       date.line.style.animation = animationLine;
     }
+
+    if (count === TIME_UPDATE) {
+      seasonAndTimeEnd = getSeasonAndTimeEnd();
+      nameSeason.innerText = seasonAndTimeEnd.season;
+    }
+
+    if (count > TIME_UPDATE + TIME_ANIMATION) {
+      count = 0;
+      date.date.style.animation = "none";
+      date.line.style.animation = "none";
+    }
+
     setData(diffTime(seasonAndTimeEnd.timeEnd, today));
   }, 1000);
 };

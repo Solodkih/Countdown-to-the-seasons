@@ -34,13 +34,14 @@ body {
 
 .number {
   font-size: 70px;
-  text-align: center;
   display: flex;
+  justify-content: center;
 }
 
 .separator {
   display: flex;
-  font-size: 70px;
+  font-size: 60px;
+  align-items: center;
 }
 
 @keyframes animationDate {
