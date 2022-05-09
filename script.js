@@ -16,6 +16,7 @@ window.onload = function () {
 
   const animationDate = `animationDate ${TIME_ANIMATION}s 2 alternate forwards`;
   const animationLine = `animationLine ${TIME_ANIMATION}s 2 alternate forwards`;
+  const animationFilter = `animationFilter ${TIME_ANIMATION}s 2 alternate forwards`;
 
   const backgroundImage = {
     summer: `url("./img/summer.jpg")`,
@@ -31,7 +32,9 @@ window.onload = function () {
     seconds: document.getElementById("seconds"),
     date: document.getElementById("date"),
     line: document.getElementById("line"),
+    filter: document.getElementById("filter"),
   };
+
   const nameSeason = document.getElementById("nameSeason");
   const textSeason = document.getElementById("textSeason");
 
@@ -133,15 +136,15 @@ window.onload = function () {
   textSeason.innerText = `Today - ${today.toLocaleString("en-US", options)}`;
   document.body.style.backgroundImage = seasonAndTimeEnd.backgroundImageSeasons;
 
-
   setInterval(() => {
     today = new Date();
     textSeason.innerText = `Today - ${today.toLocaleString("en-US", options)}`;
     count += 1;
 
-    if (count > TIME_UPDATE - TIME_ANIMATION) {
+    if (count >= TIME_UPDATE - TIME_ANIMATION) {
       date.date.style.animation = animationDate;
       date.line.style.animation = animationLine;
+      date.filter.style.animation = animationFilter;
     }
 
     if (count === TIME_UPDATE) {
@@ -150,10 +153,11 @@ window.onload = function () {
       document.body.style.backgroundImage = seasonAndTimeEnd.backgroundImageSeasons;
     }
 
-    if (count > TIME_UPDATE + TIME_ANIMATION) {
+    if (count >= TIME_UPDATE + TIME_ANIMATION) {
       count = 0;
       date.date.style.animation = "none";
       date.line.style.animation = "none";
+      date.filter.style.animation = "none";
     }
 
     setData(diffTime(seasonAndTimeEnd.timeEnd, today));
