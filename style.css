@@ -3,7 +3,7 @@ body {
   background-image: url("./img/spring.jpg"), url("./img/summer.jpg"),
     url("./img/winter.jpg"), url("./img/autumn.jpg");
   height: 100%;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "DAGGERSQUARE Regular";
@@ -53,10 +53,13 @@ body {
   display: flex;
   font-size: 60px;
   align-items: center;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
 
 .number-container {
   color: blanchedalmond;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+  width: 150px;
 }
 
 @keyframes animationDate {
@@ -115,6 +118,7 @@ body {
 }
 
 .container-text {
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
   color: blanchedalmond;
   bottom: 10%;
   left: 5%;

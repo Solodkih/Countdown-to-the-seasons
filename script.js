@@ -11,7 +11,7 @@ window.onload = function () {
     minute: "numeric",
     second: "numeric",
   };
-  const TIME_UPDATE = 5;
+  const TIME_UPDATE = 7;
   const TIME_ANIMATION = 1.5;
 
   const animationDate = `animationDate ${TIME_ANIMATION}s 2 alternate forwards`;
