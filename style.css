@@ -6,6 +6,7 @@ body {
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "DAGGERSQUARE Regular";
 }
 #filter {
   position: absolute;
@@ -24,7 +25,7 @@ body {
   top: 50%;
   position: absolute;
   width: 700px;
-  border-top: 2px solid black;
+  border-top: 2px solid blanchedalmond;;
   visibility: hidden;
 }
 
@@ -38,7 +39,7 @@ body {
   position: relative;
   justify-content: space-evenly;
   display: flex;
-  border: 4px solid black;
+  border: 4px solid blanchedalmond;
 }
 
 .number {
@@ -48,9 +49,14 @@ body {
 }
 
 .separator {
+  color: blanchedalmond;
   display: flex;
   font-size: 60px;
   align-items: center;
+}
+
+.number-container {
+  color: blanchedalmond;
 }
 
 @keyframes animationDate {
@@ -93,14 +99,38 @@ body {
   }
 }
 
+@keyframes animationText {
+  80% {
+    color: rgb(75, 75, 75, 1);
+  }
+  100% {
+    color: rgb(75, 75, 75, 1);
+  }
+}
+
 #nameSeason,
 #textSeason {
-  color: blanchedalmond;
+  font-family: "DAGGERSQUARE OBLIQUE";
   font-size: 25px;
 }
 
 .container-text {
+  color: blanchedalmond;
   bottom: 10%;
   left: 5%;
   position: absolute;
+}
+
+@font-face {
+  font-family: "DAGGERSQUARE OBLIQUE";
+  src: url("daggersquare.oblique.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "DAGGERSQUARE Regular";
+  src: url("daggersquare.regular.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
