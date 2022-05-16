@@ -1,0 +1,140 @@
+html,
+body {
+  background-image: url("./img/spring.jpg"), url("./img/summer.jpg"),
+    url("./img/winter.jpg"), url("./img/autumn.jpg");
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "DAGGERSQUARE Regular";
+}
+#filter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.timer {
+  top: 30%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+#line {
+  top: 50%;
+  position: absolute;
+  width: 700px;
+  border-top: 2px solid blanchedalmond;
+  visibility: hidden;
+}
+
+.text {
+  text-align: center;
+  font-size: 15px;
+}
+
+#date {
+  width: 700px;
+  position: relative;
+  justify-content: space-evenly;
+  display: flex;
+  border: 4px solid blanchedalmond;
+}
+
+.number {
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.separator {
+  color: blanchedalmond;
+  display: flex;
+  font-size: 60px;
+  align-items: center;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+
+.number-container {
+  color: blanchedalmond;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+  width: 150px;
+}
+
+@keyframes animationDate {
+  0% {
+    transform: scale(100%, 100%);
+  }
+  10% {
+    transform: scale(100%, 0%);
+  }
+  100% {
+    transform: scale(100%, 0%);
+  }
+}
+
+@keyframes animationLine {
+  0% {
+    transform: scale(100%, 100%);
+  }
+  10% {
+    transform: scale(100%, 100%);
+    visibility: hidden;
+  }
+  11% {
+    transform: scale(100%, 100%);
+    visibility: visible;
+  }
+  100% {
+    transform: scale(1%, 100%);
+  }
+}
+
+@keyframes animationFilter {
+  80% {
+    background: rgb(0, 0, 0);
+    backdrop-filter: blur(50px);
+  }
+  100% {
+    background: rgb(0, 0, 0);
+    backdrop-filter: blur(100px);
+  }
+}
+
+@keyframes animationText {
+  80% {
+    color: rgb(0, 0, 0);
+  }
+  100% {
+    color: rgb(0, 0, 0);
+  }
+}
+
+#nameSeason,
+#textSeason {
+  font-family: "DAGGERSQUARE OBLIQUE";
+  font-size: 25px;
+}
+
+.container-text {
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  color: blanchedalmond;
+  bottom: 10%;
+  left: 5%;
+  position: absolute;
+}
+
+@font-face {
+  font-family: "DAGGERSQUARE OBLIQUE";
+  src: url("daggersquare.oblique.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "DAGGERSQUARE Regular";
+  src: url("daggersquare.regular.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
